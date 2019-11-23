@@ -1,4 +1,10 @@
-import { NativeElement, BaseWidgetEvents, NodeWidget } from "@nodegui/nodegui";
+import {
+  NativeElement,
+  BaseWidgetEvents,
+  NodeWidget,
+  QUrl,
+  QVariant
+} from "@nodegui/nodegui";
 import addon from "./utils/addon";
 
 export const QWebEngineViewEvents = Object.freeze({
@@ -18,7 +24,10 @@ export class QWebEngineView extends NodeWidget {
     this.native = native;
     this.nodeParent = parent;
   }
-  // showMessage(message: string, timeout: number) {
-  //   this.native.showMessage(message, timeout);
-  // }
+  load(url: QUrl) {
+    this.setProperty("url", url);
+  }
+  url(): QUrl {
+    return QUrl.fromQVariant(this.property("url"));
+  }
 }

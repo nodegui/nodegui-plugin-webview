@@ -12,9 +12,11 @@ function(AddQtWebSupport addonName)
     target_include_directories(${addonName} PRIVATE
         "${QT_WEB_HOME_DIR}/include"
         "${QT_WEB_HOME_DIR}/lib/QtWebEngineWidgets.framework/Versions/5/Headers"
+        "${QT_WEB_HOME_DIR}/lib/QtWebEngine.framework/Versions/5/Headers"
     )
     target_link_libraries(${addonName} PRIVATE
         "${QT_WEB_HOME_DIR}/lib/QtWebEngineWidgets.framework/Versions/5/QtWebEngineWidgets"
+        "${QT_WEB_HOME_DIR}/lib/QtWebEngine.framework/Versions/5/QtWebEngine"
     )
 
     # if (APPLE) 

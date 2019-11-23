@@ -5,6 +5,7 @@
 
 #include <QUrl>
 #include <QWidget>
+#include <QtWebEngine>
 
 Napi::FunctionReference QWebEngineViewWrap::constructor;
 
@@ -17,6 +18,7 @@ Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
        QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineViewWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
+  QtWebEngine::initialize();
   return exports;
 }
 
@@ -44,21 +46,8 @@ QWebEngineViewWrap::QWebEngineViewWrap(const Napi::CallbackInfo &info)
   this->rawData = extrautils::configureQWidget(
       this->getInternalInstance(), this->getInternalInstance()->getFlexNode(),
       true);
-  this->instance->load(QUrl("https://google.com"));
 }
 
 QWebEngineViewWrap::~QWebEngineViewWrap() {
   extrautils::safeDelete(this->instance);
 }
-
-// Napi::Value QWebEngineViewWrap::showMessage(const Napi::CallbackInfo &info) {
-//   Napi::Env env = info.Env();
-//   Napi::HandleScope scope(env);
-
-//   Napi::String message = info[0].As<Napi::String>();
-//   Napi::Number timeout = info[1].As<Napi::Number>();
-//   this->instance->showMessage(QString::fromStdString(message.Utf8Value()),
-//                               timeout.Int32Value());
-
-//   return env.Null();
-// }
