@@ -1,28 +1,16 @@
-import {
-  QMainWindow,
-  QPushButton,
-  FlexLayout,
-  QWidget
-} from "@nodegui/nodegui";
-import { QStatusBar } from "./index";
+import { QMainWindow, FlexLayout, QWidget } from "@nodegui/nodegui";
+import { QWebEngineView } from "./index";
 
 const win = new QMainWindow();
 const rootView = new QWidget();
 rootView.setObjectName("root");
 rootView.setLayout(new FlexLayout());
 
-const statusBar = new QStatusBar();
-statusBar.setInlineStyle("align-self:'stretch';");
-
-const button = new QPushButton();
-button.setText("Push Push Push!");
-button.addEventListener("clicked", () => {
-  statusBar.showMessage(`hello ${Date.now()}`, 1000);
-});
+const webview = new QWebEngineView();
+webview.setInlineStyle("align-self:'stretch';");
 
 if (rootView.layout) {
-  rootView.layout.addWidget(button);
-  rootView.layout.addWidget(statusBar);
+  rootView.layout.addWidget(webview);
 }
 
 win.setCentralWidget(rootView);

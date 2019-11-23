@@ -9,15 +9,15 @@ string(REPLACE "\"" "" NODEGUI_PLUGIN_CMAKE_HELPER ${NODEGUI_PLUGIN_CMAKE_HELPER
 include("${NODEGUI_PLUGIN_CMAKE_HELPER}")
 
 # -------------- User Config ---------------
-set(PLUGIN_ADDON_NAME "nodegui_plugin_statusbar")
+set(PLUGIN_ADDON_NAME "nodegui_plugin_webview")
 
 project(${PLUGIN_ADDON_NAME})
 
 add_library(${PLUGIN_ADDON_NAME} SHARED  
     "${CMAKE_JS_SRC}"
     "${PROJECT_SOURCE_DIR}/src/cpp/main.cpp"
-    "${PROJECT_SOURCE_DIR}/src/cpp/QStatusBar/qstatusbar_wrap.cpp"
-    "${PROJECT_SOURCE_DIR}/src/cpp/QStatusBar/nstatusbar.hpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/QWebEngineView/qwebengineview_wrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/QWebEngineView/nwebengineview.hpp"
 ) 
 
 AddPluginConfig(${PLUGIN_ADDON_NAME})

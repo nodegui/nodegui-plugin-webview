@@ -1,1 +1,1 @@
-export { QStatusBar, QStatusBarEvents } from "./lib/QStatusBar";
+export { QWebEngineView, QWebEngineViewEvents } from "./lib/QWebEngineView";
