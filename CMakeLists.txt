@@ -7,6 +7,7 @@ execute_process(COMMAND node -p "require('@nodegui/nodegui/plugin').CMAKE_HELPER
 string(REPLACE "\n" "" NODEGUI_PLUGIN_CMAKE_HELPER ${NODEGUI_PLUGIN_CMAKE_HELPER})
 string(REPLACE "\"" "" NODEGUI_PLUGIN_CMAKE_HELPER ${NODEGUI_PLUGIN_CMAKE_HELPER})
 include("${NODEGUI_PLUGIN_CMAKE_HELPER}")
+include(./config/qtweb.cmake)
 
 # -------------- User Config ---------------
 set(PLUGIN_ADDON_NAME "nodegui_plugin_webview")
@@ -21,6 +22,7 @@ add_library(${PLUGIN_ADDON_NAME} SHARED
 ) 
 
 AddPluginConfig(${PLUGIN_ADDON_NAME})
+AddQtWebSupport(${PLUGIN_ADDON_NAME})
 
 target_include_directories(${PLUGIN_ADDON_NAME} PRIVATE 
     "${CMAKE_JS_INC}" 

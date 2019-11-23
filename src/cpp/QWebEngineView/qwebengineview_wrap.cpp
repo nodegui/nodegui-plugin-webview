@@ -3,6 +3,7 @@
 #include <nodegui/Extras/Utils/nutils.h>
 #include <nodegui/QtWidgets/QWidget/qwidget_wrap.h>
 
+#include <QUrl>
 #include <QWidget>
 
 Napi::FunctionReference QWebEngineViewWrap::constructor;
@@ -40,10 +41,10 @@ QWebEngineViewWrap::QWebEngineViewWrap(const Napi::CallbackInfo &info)
     Napi::TypeError::New(env, "Wrong number of arguments")
         .ThrowAsJavaScriptException();
   }
-  // Adds measure function on yoga node so that widget size is calculated based
-  // on its text also.
-  YGNodeSetMeasureFunc(this->instance->getFlexNode(),
-                       &extrautils::measureQtWidget);
+  this->rawData = extrautils::configureQWidget(
+      this->getInternalInstance(), this->getInternalInstance()->getFlexNode(),
+      true);
+  this->instance->load(QUrl("https://google.com"));
 }
 
 QWebEngineViewWrap::~QWebEngineViewWrap() {

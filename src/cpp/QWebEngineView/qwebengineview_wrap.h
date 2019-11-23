@@ -4,7 +4,7 @@
 
 #include <QPointer>
 
-#include "nwebenginview.hpp"
+#include "nwebengineview.hpp"
 
 class QWebEngineViewWrap : public Napi::ObjectWrap<QWebEngineViewWrap> {
  private:

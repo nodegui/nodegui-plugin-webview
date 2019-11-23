@@ -2,7 +2,7 @@
 
 #include <nodegui/core/NodeWidget/nodewidget.h>
 
-#include <QWebEngineView>
+#include <QtWebEngineWidgets/QWebEngineView>
 
 class NWebEngineView : public QWebEngineView, public NodeWidget {
   Q_OBJECT
