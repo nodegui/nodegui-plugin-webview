@@ -8,62 +8,47 @@ function(AddQtWebSupport addonName)
     # string(REPLACE "\n" "" QT_HOME_DIR "${QT_HOME_DIR}")
     # string(REPLACE "\"" "" QT_HOME_DIR "${QT_HOME_DIR}")
 
-    set(QT_WEB_HOME_DIR "/Users/atulr/Tools/qt/5.13.0/clang_64")
-    target_include_directories(${addonName} PRIVATE
-        "${QT_WEB_HOME_DIR}/include"
-        "${QT_WEB_HOME_DIR}/lib/QtWebEngineWidgets.framework/Versions/5/Headers"
-        "${QT_WEB_HOME_DIR}/lib/QtWebEngine.framework/Versions/5/Headers"
-    )
-    target_link_libraries(${addonName} PRIVATE
-        "${QT_WEB_HOME_DIR}/lib/QtWebEngineWidgets.framework/Versions/5/QtWebEngineWidgets"
-        "${QT_WEB_HOME_DIR}/lib/QtWebEngine.framework/Versions/5/QtWebEngine"
-    )
+    set(QT_HOME_DIR "/Users/atulr/Tools/qt/5.13.0/clang_64")
 
-    # if (APPLE) 
-    #     target_include_directories(${addonName} PRIVATE
-    #         "${QT_HOME_DIR}/include"
-    #         "${QT_HOME_DIR}/lib/QtCore.framework/Versions/5/Headers"
-    #         "${QT_HOME_DIR}/lib/QtGui.framework/Versions/5/Headers"
-    #         "${QT_HOME_DIR}/lib/QtWidgets.framework/Versions/5/Headers"
-    #     )
-    #     target_link_libraries(${addonName} PRIVATE
-    #         "${QT_HOME_DIR}/lib/QtCore.framework/Versions/5/QtCore"
-    #         "${QT_HOME_DIR}/lib/QtGui.framework/Versions/5/QtGui"
-    #         "${QT_HOME_DIR}/lib/QtWidgets.framework/Versions/5/QtWidgets"
-    #     )
-    # endif()
+    if (APPLE) 
+        target_include_directories(${addonName} PRIVATE
+            "${QT_HOME_DIR}/include"
+            "${QT_HOME_DIR}/lib/QtWebEngineWidgets.framework/Versions/5/Headers"
+            "${QT_HOME_DIR}/lib/QtWebEngine.framework/Versions/5/Headers"
+        )
+        target_link_libraries(${addonName} PRIVATE
+            "${QT_HOME_DIR}/lib/QtWebEngineWidgets.framework/Versions/5/QtWebEngineWidgets"
+            "${QT_HOME_DIR}/lib/QtWebEngine.framework/Versions/5/QtWebEngine"
+        )
+    endif()
 
-    # if (WIN32)       
-    #     target_include_directories(${addonName} PRIVATE
-    #         "${QT_HOME_DIR}\\include"
-    #         "${QT_HOME_DIR}\\include\\QtCore"
-    #         "${QT_HOME_DIR}\\include\\QtGui"
-    #         "${QT_HOME_DIR}\\include\\QtWidgets"
-    #     )
-    #     target_link_libraries(${addonName} PRIVATE
-    #         "${QT_HOME_DIR}\\lib\\Qt5Core.lib"
-    #         "${QT_HOME_DIR}\\lib\\Qt5Gui.lib"
-    #         "${QT_HOME_DIR}\\lib\\Qt5Widgets.lib"
-    #     )
-    # endif()
+    if (WIN32)       
+        target_include_directories(${addonName} PRIVATE
+            "${QT_HOME_DIR}\\include"
+            "${QT_HOME_DIR}\\include\\QtWebEngineWidgets"
+            "${QT_HOME_DIR}\\include\\QtWebEngine"
+        )
+        target_link_libraries(${addonName} PRIVATE
+            "${QT_HOME_DIR}\\lib\\QtWebEngineWidgets.lib"
+            "${QT_HOME_DIR}\\lib\\QtWebEngine.lib"
+        )
+    endif()
 
-    # if(UNIX AND NOT APPLE)
-    #     set(LINUX TRUE)
-    # endif()
+    if(UNIX AND NOT APPLE)
+        set(LINUX TRUE)
+    endif()
 
-    # if(LINUX)
-    #     target_include_directories(${addonName} PRIVATE
-    #         "${QT_HOME_DIR}/include"
-    #         "${QT_HOME_DIR}/include/QtCore"
-    #         "${QT_HOME_DIR}/include/QtGui"
-    #         "${QT_HOME_DIR}/include/QtWidgets"
-    #     )
-    #     target_link_libraries(${addonName} PRIVATE
-    #         "${QT_HOME_DIR}/lib/libQt5Core.so"
-    #         "${QT_HOME_DIR}/lib/libQt5Gui.so"
-    #         "${QT_HOME_DIR}/lib/libQt5Widgets.so"
-    #     )
-    # endif()    
+    if(LINUX)
+        target_include_directories(${addonName} PRIVATE
+            "${QT_HOME_DIR}/include"
+            "${QT_HOME_DIR}/include/QtWebEngine"
+            "${QT_HOME_DIR}/include/QtWebEngineWidgets"
+        )
+        target_link_libraries(${addonName} PRIVATE
+            "${QT_HOME_DIR}/lib/QtWebEngine.so"
+            "${QT_HOME_DIR}/lib/QtWebEngineWidgets.so"
+        )
+    endif()    
 
   
 endfunction(AddQtWebSupport addonName)
