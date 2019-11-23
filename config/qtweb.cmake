@@ -1,15 +1,20 @@
 function(AddQtWebSupport addonName)
 
-    
     # execute_process(COMMAND node -p "require('@nodegui/qode').qtHome"
     #     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     #     OUTPUT_VARIABLE QT_HOME_DIR
     # )
-    # string(REPLACE "\n" "" QT_HOME_DIR "${QT_HOME_DIR}")
-    # string(REPLACE "\"" "" QT_HOME_DIR "${QT_HOME_DIR}")
-
-    set(QT_HOME_DIR "/Users/atulr/Tools/qt/5.13.0/clang_64")
-
+    # set(QT_HOME_DIR "/Users/atulr/Tools/qt/5.13.0/clang_642")
+    
+    if(DEFINED ENV{QT_INSTALL_DIR})
+        # Allows to use custom Qt installation via QT_INSTALL_DIR env variable
+        message(STATUS "Using Custom QT installation for ${addonName} QT_INSTALL_DIR:$ENV{QT_INSTALL_DIR}")
+        set(QT_HOME_DIR "$ENV{QT_INSTALL_DIR}")
+    endif()
+   
+    string(REPLACE "\n" "" QT_HOME_DIR "${QT_HOME_DIR}")
+    string(REPLACE "\"" "" QT_HOME_DIR "${QT_HOME_DIR}")
+    
     if (APPLE) 
         target_include_directories(${addonName} PRIVATE
             "${QT_HOME_DIR}/include"
