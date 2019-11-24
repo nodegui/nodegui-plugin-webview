@@ -4,7 +4,6 @@ function(AddQtWebSupport addonName)
     #     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     #     OUTPUT_VARIABLE QT_HOME_DIR
     # )
-    # set(QT_HOME_DIR "/Users/atulr/Tools/qt/5.13.0/clang_642")
     
     if(DEFINED ENV{QT_INSTALL_DIR})
         # Allows to use custom Qt installation via QT_INSTALL_DIR env variable

@@ -17,7 +17,7 @@ class QWebEngineViewWrap : public Napi::ObjectWrap<QWebEngineViewWrap> {
   NWebEngineView *getInternalInstance();
   static Napi::FunctionReference constructor;
   // wrapped methods
-  // Napi::Value showMessage(const Napi::CallbackInfo &info);
+  Napi::Value settings(const Napi::CallbackInfo &info);
 
   QWIDGET_WRAPPED_METHODS_DECLARATION
 };

@@ -7,15 +7,17 @@
 #include <QWidget>
 #include <QtWebEngine>
 
+#include "src/cpp/QWebEngineSettings/qwebenginesettings_wrap.h"
+
 Napi::FunctionReference QWebEngineViewWrap::constructor;
 
 Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
   char CLASSNAME[] = "QWebEngineView";
-  Napi::Function func = DefineClass(
-      env, CLASSNAME,
-      {// InstanceMethod("showMessage", &QWebEngineViewWrap::showMessage),
-       QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineViewWrap)});
+  Napi::Function func =
+      DefineClass(env, CLASSNAME,
+                  {InstanceMethod("settings", &QWebEngineViewWrap::settings),
+                   QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineViewWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
   QtWebEngine::initialize();
@@ -50,4 +52,12 @@ QWebEngineViewWrap::QWebEngineViewWrap(const Napi::CallbackInfo &info)
 
 QWebEngineViewWrap::~QWebEngineViewWrap() {
   extrautils::safeDelete(this->instance);
+}
+
+Napi::Value QWebEngineViewWrap::settings(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+  QWebEngineSettings *settings = this->instance->settings();
+  return QWebEngineSettingsWrap::constructor.New(
+      {Napi::External<QWebEngineSettings>::New(env, settings)});
 }

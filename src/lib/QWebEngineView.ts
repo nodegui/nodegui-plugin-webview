@@ -2,13 +2,19 @@ import {
   NativeElement,
   BaseWidgetEvents,
   NodeWidget,
-  QUrl,
-  QVariant
+  QUrl
 } from "@nodegui/nodegui";
 import addon from "./utils/addon";
+import { QWebEngineSettings } from "./QWebEngineSettings";
 
 export const QWebEngineViewEvents = Object.freeze({
-  ...BaseWidgetEvents
+  ...BaseWidgetEvents,
+  loadFinished: "loadFinished",
+  loadProgress: "loadProgress",
+  loadStarted: "loadStarted",
+  selectionChanged: "selectionChanged",
+  urlChanged: "urlChanged",
+  titleChanged: "titleChanged"
 });
 
 export class QWebEngineView extends NodeWidget {
@@ -29,5 +35,8 @@ export class QWebEngineView extends NodeWidget {
   }
   url(): QUrl {
     return QUrl.fromQVariant(this.property("url"));
+  }
+  settings(): QWebEngineSettings {
+    return new QWebEngineSettings(this.native.settings());
   }
 }

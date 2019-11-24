@@ -6,6 +6,7 @@ import {
   QUrl
 } from "@nodegui/nodegui";
 import { QWebEngineView } from "./index";
+import { QWebEngineViewEvents } from "./lib/QWebEngineView";
 
 const win = new QMainWindow();
 const rootView = new QWidget();
@@ -16,7 +17,13 @@ text.setText("NodeGui web view");
 rootView.layout?.addWidget(text);
 const webview = new QWebEngineView();
 webview.setInlineStyle("align-self:'stretch';");
-webview.load(new QUrl("http://blog.atulr.com"));
+webview.load(new QUrl("http://google.com"));
+webview.addEventListener(QWebEngineViewEvents.urlChanged, url => {
+  console.log("changed to", url);
+});
+webview.addEventListener(QWebEngineViewEvents.selectionChanged, () => {
+  console.log("selection", webview.property("selectedText").toString());
+});
 rootView.layout?.addWidget(webview);
 
 win.setCentralWidget(rootView);
