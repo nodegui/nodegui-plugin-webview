@@ -42,12 +42,20 @@ function getMiniQtWebviewArtifacts() {
       return {
         artifacts: [
           {
-            name: "Qt Base",
-            link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_5141/qt.qt5.5141.win64_msvc2017_64/5.14.1-0-202001240957qtbase-Windows-Windows_10-MSVC2017-Windows-Windows_10-X86_64.7z`
+            name: "Qt WebEngine",
+            link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_5141/qt.qt5.5141.qtwebengine.win64_msvc2017_64/5.14.1-0-202001240957qtwebengine-Windows-Windows_10-MSVC2017-Windows-Windows_10-X86_64.7z`
           },
           {
-            name: "Qt Tools",
-            link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_5141/qt.qt5.5141.win64_msvc2017_64/5.14.1-0-202001240957qttools-Windows-Windows_10-MSVC2017-Windows-Windows_10-X86_64.7z`
+            name: "Qt Declarative",
+            link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_5141/qt.qt5.5141.win64_msvc2017_64/5.14.1-0-202001240957qtdeclarative-Windows-Windows_10-MSVC2017-Windows-Windows_10-X86_64.7z`
+          },
+          {
+            name: "Qt WebChannel",
+            link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_5141/qt.qt5.5141.win64_msvc2017_64/5.14.1-0-202001240957qtwebchannel-Windows-Windows_10-MSVC2017-Windows-Windows_10-X86_64.7z`
+          },
+          {
+            name: "Qt Location",
+            link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_5141/qt.qt5.5141.win64_msvc2017_64/5.14.1-0-202001240957qtlocation-Windows-Windows_10-MSVC2017-Windows-Windows_10-X86_64.7z`
           }
         ]
       };
@@ -56,12 +64,20 @@ function getMiniQtWebviewArtifacts() {
       return {
         artifacts: [
           {
-            name: "Qt Base",
-            link: `https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/qt5_5141/qt.qt5.5141.gcc_64/5.14.1-0-202001240953qtbase-Linux-RHEL_7_6-GCC-Linux-RHEL_7_6-X86_64.7z`
+            name: "Qt WebEngine",
+            link: `https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/qt5_5141/qt.qt5.5141.qtwebengine.gcc_64/5.14.1-0-202001240953qtwebengine-Linux-RHEL_7_6-GCC-Linux-RHEL_7_6-X86_64.7z`
           },
           {
-            name: "Qt ICU",
-            link: `https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/qt5_5141/qt.qt5.5141.gcc_64/5.14.1-0-202001240953icu-linux-Rhel7.2-x64.7z`
+            name: "Qt Declarative",
+            link: `https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/qt5_5141/qt.qt5.5141.gcc_64/5.14.1-0-202001240953qtdeclarative-Linux-RHEL_7_6-GCC-Linux-RHEL_7_6-X86_64.7z`
+          },
+          {
+            name: "Qt WebChannel",
+            link: `https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/qt5_5141/qt.qt5.5141.gcc_64/5.14.1-0-202001240953qtwebchannel-Linux-RHEL_7_6-GCC-Linux-RHEL_7_6-X86_64.7z`
+          },
+          {
+            name: "Qt Location",
+            link: `https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/qt5_5141/qt.qt5.5141.gcc_64/5.14.1-0-202001240953qtlocation-Linux-RHEL_7_6-GCC-Linux-RHEL_7_6-X86_64.7z`
           }
         ]
       };
