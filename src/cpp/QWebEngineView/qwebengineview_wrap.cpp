@@ -1,7 +1,7 @@
 #include "qwebengineview_wrap.h"
 
 #include "src/cpp/QWebEngineSettings/qwebenginesettings_wrap.h"
-
+#include <QDebug>
 #include <QWidget>
 #include "nodegui/Extras/Utils/nutils.h"
 #include "nodegui/QtWidgets/QWidget/qwidget_wrap.h"
@@ -46,9 +46,7 @@ QWebEngineViewWrap::QWebEngineViewWrap(const Napi::CallbackInfo& info)
       true);
 }
 
-QWebEngineViewWrap::~QWebEngineViewWrap() {
-  extrautils::safeDelete(this->instance);
-}
+QWebEngineViewWrap::~QWebEngineViewWrap() { delete this->instance; }
 
 Napi::Value QWebEngineViewWrap::settings(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
