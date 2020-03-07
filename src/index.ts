@@ -1,4 +1,4 @@
-export { QWebEngineView, QWebEngineViewEvents } from "./lib/QWebEngineView";
+export { QWebEngineView, QWebEngineViewSignals } from "./lib/QWebEngineView";
 export {
   QWebEngineSettings,
   UnknownUrlSchemePolicy

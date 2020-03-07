@@ -2,7 +2,6 @@
 
 #include <napi.h>
 #include <nodegui/core/Component/component_macro.h>
-
 #include <QWebEngineSettings>
 
 class QWebEngineSettingsWrap : public Napi::ObjectWrap<QWebEngineSettingsWrap> {

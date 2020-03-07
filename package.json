@@ -1,18 +1,19 @@
 {
-  "name": "nodegui-plugin",
+  "name": "nodegui-plugin-webview",
   "version": "1.0.0",
-  "description": "A sample native plugin example for NodeGUI",
+  "description": "Webview plugin for NodeGui",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc && npm run build:addon",
+    "build": "cross-env tsc && npm run build:addon",
     "build:addon": "cross-env CMAKE_BUILD_PARALLEL_LEVEL=8 cmake-js compile",
-    "dev": "npm run build && qode dist/demo.js"
+    "dev": "cross-env npm run build && qode dist/demo.js",
+    "postinstall": "node ./scripts/install.js"
   },
   "author": "Atul R",
   "license": "MIT",
   "peerDependencies": {
-    "@nodegui/nodegui": "*"
+    "@nodegui/nodegui": ">=0.15.0"
   },
   "dependencies": {
     "cmake-js": "^5.3.2",
@@ -20,8 +21,7 @@
     "node-addon-api": "^1.7.1"
   },
   "devDependencies": {
-    "@nodegui/nodegui": "^0.6.5",
-    "@nodegui/qode": "^1.0.6",
+    "@nodegui/nodegui": "^0.15.2",
     "@types/node": "^12.12.8",
     "typescript": "^3.7.2"
   }

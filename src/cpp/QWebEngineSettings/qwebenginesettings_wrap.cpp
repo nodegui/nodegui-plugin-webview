@@ -11,7 +11,7 @@ Napi::Object QWebEngineSettingsWrap::init(Napi::Env env, Napi::Object exports) {
       env, CLASSNAME,
       {InstanceMethod("setUnknownUrlSchemePolicy",
                       &QWebEngineSettingsWrap::setUnknownUrlSchemePolicy),
-       COMPONENT_WRAPPED_METHODS_EXPORT_DEFINE});
+       COMPONENT_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineSettingsWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
   return exports;

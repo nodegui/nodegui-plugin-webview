@@ -1,25 +1,24 @@
 import {
   NativeElement,
-  BaseWidgetEvents,
   NodeWidget,
-  QUrl
+  QUrl,
+  QWidgetSignals
 } from "@nodegui/nodegui";
 import addon from "./utils/addon";
 import { QWebEngineSettings } from "./QWebEngineSettings";
 
-export const QWebEngineViewEvents = Object.freeze({
-  ...BaseWidgetEvents,
-  loadFinished: "loadFinished",
-  loadProgress: "loadProgress",
-  loadStarted: "loadStarted",
-  selectionChanged: "selectionChanged",
-  urlChanged: "urlChanged",
-  titleChanged: "titleChanged"
-});
+export interface QWebEngineViewSignals extends QWidgetSignals {
+  loadFinished: (ok: boolean) => void;
+  loadProgress: (progress: number) => void;
+  loadStarted: () => void;
+  selectionChanged: () => void;
+  urlChanged: (url: string) => void;
+  titleChanged: (title: string) => void;
+}
 
-export class QWebEngineView extends NodeWidget {
+export class QWebEngineView extends NodeWidget<QWebEngineViewSignals> {
   native: NativeElement;
-  constructor(parent?: NodeWidget) {
+  constructor(parent?: NodeWidget<any>) {
     let native;
     if (parent) {
       native = new addon.QWebEngineView(parent.native);
@@ -30,7 +29,7 @@ export class QWebEngineView extends NodeWidget {
     this.native = native;
     this.nodeParent = parent;
   }
-  load(url: QUrl) {
+  load(url: string) {
     this.setProperty("url", url);
   }
   url(): QUrl {
