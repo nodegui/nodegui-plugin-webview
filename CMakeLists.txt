@@ -8,7 +8,7 @@ string(REPLACE "\n" "" NODEGUI_PLUGIN_CMAKE_HELPER ${NODEGUI_PLUGIN_CMAKE_HELPER
 string(REPLACE "\"" "" NODEGUI_PLUGIN_CMAKE_HELPER ${NODEGUI_PLUGIN_CMAKE_HELPER})
 
 include("${NODEGUI_PLUGIN_CMAKE_HELPER}")
-include(./config/qtweb.cmake)
+include(./config/init.cmake)
 
 # -------------- User Config ---------------
 set(PLUGIN_ADDON_NAME "nodegui_plugin_webview")
@@ -32,7 +32,6 @@ target_include_directories(${PLUGIN_ADDON_NAME} PRIVATE
 )
 target_link_libraries(${PLUGIN_ADDON_NAME} PRIVATE
     "${CMAKE_JS_LIB}"
-    Qt5::WebEngine
     Qt5::WebEngineCore 
     Qt5::WebEngineWidgets
 )

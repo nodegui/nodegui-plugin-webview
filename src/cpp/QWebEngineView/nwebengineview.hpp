@@ -3,6 +3,7 @@
 #include <nodegui/core/NodeWidget/nodewidget.h>
 
 #include <QtWebEngineWidgets/QWebEngineView>
+#include "nodegui/QtWidgets/QWidget/qwidget_macro.h"
 
 class NWebEngineView : public QWebEngineView, public NodeWidget {
   Q_OBJECT
@@ -10,7 +11,8 @@ class NWebEngineView : public QWebEngineView, public NodeWidget {
  public:
   using QWebEngineView::QWebEngineView;
 
-  void connectWidgetSignalsToEventEmitter() {
+  void connectSignalsToEventEmitter() {
+    QWIDGET_SIGNALS
     // Qt Connects: Implement all signal connects here
     QObject::connect(this, &QWebEngineView::loadFinished, [=](bool ok) {
       Napi::Env env = this->emitOnNode.Env();

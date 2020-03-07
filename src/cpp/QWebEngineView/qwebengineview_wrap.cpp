@@ -1,12 +1,10 @@
 #include "qwebengineview_wrap.h"
 
-#include <nodegui/Extras/Utils/nutils.h>
-#include <nodegui/QtWidgets/QWidget/qwidget_wrap.h>
-
-#include <QUrl>
-#include <QWidget>
-
 #include "src/cpp/QWebEngineSettings/qwebenginesettings_wrap.h"
+
+#include <QWidget>
+#include "nodegui/Extras/Utils/nutils.h"
+#include "nodegui/QtWidgets/QWidget/qwidget_wrap.h"
 
 Napi::FunctionReference QWebEngineViewWrap::constructor;
 
@@ -22,18 +20,18 @@ Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
   return exports;
 }
 
-NWebEngineView *QWebEngineViewWrap::getInternalInstance() {
+NWebEngineView* QWebEngineViewWrap::getInternalInstance() {
   return this->instance;
 }
 
-QWebEngineViewWrap::QWebEngineViewWrap(const Napi::CallbackInfo &info)
+QWebEngineViewWrap::QWebEngineViewWrap(const Napi::CallbackInfo& info)
     : Napi::ObjectWrap<QWebEngineViewWrap>(info) {
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
 
   if (info.Length() == 1) {
     Napi::Object parentObject = info[0].As<Napi::Object>();
-    QWidgetWrap *parentWidgetWrap =
+    QWidgetWrap* parentWidgetWrap =
         Napi::ObjectWrap<QWidgetWrap>::Unwrap(parentObject);
     this->instance =
         new NWebEngineView(parentWidgetWrap->getInternalInstance());
@@ -52,10 +50,10 @@ QWebEngineViewWrap::~QWebEngineViewWrap() {
   extrautils::safeDelete(this->instance);
 }
 
-Napi::Value QWebEngineViewWrap::settings(const Napi::CallbackInfo &info) {
+Napi::Value QWebEngineViewWrap::settings(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
-  QWebEngineSettings *settings = this->instance->settings();
+  QWebEngineSettings* settings = this->instance->settings();
   return QWebEngineSettingsWrap::constructor.New(
       {Napi::External<QWebEngineSettings>::New(env, settings)});
 }

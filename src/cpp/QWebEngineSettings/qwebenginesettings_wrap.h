@@ -5,6 +5,8 @@
 #include <QWebEngineSettings>
 
 class QWebEngineSettingsWrap : public Napi::ObjectWrap<QWebEngineSettingsWrap> {
+  COMPONENT_WRAPPED_METHODS_DECLARATION
+
  private:
   QWebEngineSettings* instance;
 
@@ -15,6 +17,4 @@ class QWebEngineSettingsWrap : public Napi::ObjectWrap<QWebEngineSettingsWrap> {
   QWebEngineSettings* getInternalInstance();
   // Wrapped methods
   Napi::Value setUnknownUrlSchemePolicy(const Napi::CallbackInfo& info);
-
-  COMPONENT_WRAPPED_METHODS_DECLARATION
 };
