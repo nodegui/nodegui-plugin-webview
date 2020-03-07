@@ -1,3 +1,5 @@
+import { QWebEngineView } from "./index";
+
 import {
   QMainWindow,
   FlexLayout,
@@ -5,7 +7,6 @@ import {
   QLabel,
   QUrl
 } from "@nodegui/nodegui";
-import { QWebEngineView } from "./index";
 
 const win = new QMainWindow();
 const rootView = new QWidget();

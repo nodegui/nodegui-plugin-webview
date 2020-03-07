@@ -5,7 +5,6 @@
 
 #include <QUrl>
 #include <QWidget>
-#include <QtWebEngine>
 
 #include "src/cpp/QWebEngineSettings/qwebenginesettings_wrap.h"
 
@@ -20,7 +19,6 @@ Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
                    QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineViewWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
-  QtWebEngine::initialize();
   return exports;
 }
 
