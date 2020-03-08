@@ -31,8 +31,8 @@ QWebEngineViewWrap::QWebEngineViewWrap(const Napi::CallbackInfo& info)
 
   if (info.Length() == 1) {
     Napi::Object parentObject = info[0].As<Napi::Object>();
-    QWidgetWrap* parentWidgetWrap =
-        Napi::ObjectWrap<QWidgetWrap>::Unwrap(parentObject);
+    NodeWidgetWrap* parentWidgetWrap =
+        Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(parentObject);
     this->instance =
         new NWebEngineView(parentWidgetWrap->getInternalInstance());
   } else if (info.Length() == 0) {
@@ -46,7 +46,9 @@ QWebEngineViewWrap::QWebEngineViewWrap(const Napi::CallbackInfo& info)
       true);
 }
 
-QWebEngineViewWrap::~QWebEngineViewWrap() { delete this->instance; }
+QWebEngineViewWrap::~QWebEngineViewWrap() {
+  extrautils::safeDelete(this->instance);
+}
 
 Napi::Value QWebEngineViewWrap::settings(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
