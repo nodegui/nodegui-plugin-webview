@@ -16,12 +16,13 @@
     "@nodegui/nodegui": ">=0.15.0"
   },
   "dependencies": {
+    "@nodegui/artifact-installer": "^1.1.0",
     "cmake-js": "^5.3.2",
     "cross-env": "^6.0.3",
     "node-addon-api": "^1.7.1"
   },
   "devDependencies": {
-    "@nodegui/nodegui": "^0.15.2",
+    "@nodegui/nodegui": "^0.15.3",
     "@types/node": "^12.12.8",
     "typescript": "^3.7.2"
   }
