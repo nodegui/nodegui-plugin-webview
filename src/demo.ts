@@ -1,13 +1,13 @@
 import { QWebEngineView } from "./index";
-import {
-  QMainWindow,
-  QWidget,
-  FlexLayout,
-  QPushButton
-} from "@nodegui/nodegui";
+// import {
+//   QMainWindow,
+//   QWidget,
+//   FlexLayout,
+//   QPushButton
+// } from "@nodegui/nodegui";
 
-const win = new QMainWindow();
-const center = new QWidget();
+// const win = new QMainWindow();
+// const center = new QWidget();
 const webview = new QWebEngineView();
 webview.setInlineStyle("align-self:'stretch';");
 webview.load("http://google.com");
@@ -18,12 +18,15 @@ webview.addEventListener("selectionChanged", () => {
   console.log("selection", webview.property("selectedText").toString());
 });
 
-const button = new QPushButton();
-button.setText("Hello");
+webview.show();
+(global as any).wv = webview;
 
-center.setLayout(new FlexLayout());
-center.layout?.addWidget(webview);
-center.layout?.addWidget(button);
-win.setCentralWidget(center);
-win.show();
-(global as any).win = win;
+// const button = new QPushButton();
+// button.setText("Hello");
+
+// center.setLayout(new FlexLayout());
+// center.layout?.addWidget(webview);
+// center.layout?.addWidget(button);
+// win.setCentralWidget(center);
+// win.show();
+// (global as any).win = win;

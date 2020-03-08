@@ -23,8 +23,8 @@ add_library(${PLUGIN_ADDON_NAME} SHARED
     "${PROJECT_SOURCE_DIR}/src/cpp/QWebEngineSettings/qwebenginesettings_wrap.cpp"
 ) 
 
-AddPluginConfig(${PLUGIN_ADDON_NAME})
 AddQtWebSupport(${PLUGIN_ADDON_NAME})
+AddPluginConfig(${PLUGIN_ADDON_NAME})
 
 target_include_directories(${PLUGIN_ADDON_NAME} PRIVATE 
     "${CMAKE_JS_INC}" 
@@ -34,5 +34,8 @@ target_link_libraries(${PLUGIN_ADDON_NAME} PRIVATE
     "${CMAKE_JS_LIB}"
     Qt5::WebEngineCore 
     Qt5::WebEngineWidgets
+    Qt5::Core
+    Qt5::Widgets
+    Qt5::Gui
 )
 
