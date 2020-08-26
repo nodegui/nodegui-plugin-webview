@@ -6,6 +6,7 @@ import {
 } from "@nodegui/nodegui";
 import addon from "./utils/addon";
 import { QWebEngineSettings } from "./QWebEngineSettings";
+import { QWebEnginePage } from "./QWebEnginePage";
 
 export interface QWebEngineViewSignals extends QWidgetSignals {
   loadFinished: (ok: boolean) => void;
@@ -37,5 +38,9 @@ export class QWebEngineView extends NodeWidget<QWebEngineViewSignals> {
   }
   settings(): QWebEngineSettings {
     return new QWebEngineSettings(this.native.settings());
+  }
+
+  page(): QWebEnginePage {
+    return new QWebEnginePage(this.native.page());
   }
 }

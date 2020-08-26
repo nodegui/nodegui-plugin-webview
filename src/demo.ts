@@ -17,6 +17,11 @@ webview.addEventListener("urlChanged", url => {
 webview.addEventListener("selectionChanged", () => {
   console.log("selection", webview.property("selectedText").toString());
 });
+webview.addEventListener("loadFinished", () => {
+  const js = `document.querySelector('input[name=q]').value = 'nodegui';`;
+  const page = webview.page();
+  page.runJavaScript(js);
+});
 
 webview.show();
 (global as any).wv = webview;

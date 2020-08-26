@@ -1,6 +1,7 @@
 #include "qwebengineview_wrap.h"
 
 #include "src/cpp/QWebEngineSettings/qwebenginesettings_wrap.h"
+#include "src/cpp/QWebEnginePage/qwebenginepage_wrap.h"
 #include <QDebug>
 #include <QWidget>
 #include "nodegui/Extras/Utils/nutils.h"
@@ -14,6 +15,7 @@ Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
   Napi::Function func =
       DefineClass(env, CLASSNAME,
                   {InstanceMethod("settings", &QWebEngineViewWrap::settings),
+                   InstanceMethod("page", &QWebEngineViewWrap::page),
                    QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineViewWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
@@ -56,4 +58,12 @@ Napi::Value QWebEngineViewWrap::settings(const Napi::CallbackInfo& info) {
   QWebEngineSettings* settings = this->instance->settings();
   return QWebEngineSettingsWrap::constructor.New(
       {Napi::External<QWebEngineSettings>::New(env, settings)});
+}
+
+Napi::Value QWebEngineViewWrap::page(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+  QWebEnginePage* page = this->instance->page();
+  return QWebEnginePageWrap::constructor.New(
+      {Napi::External<QWebEnginePage>::New(env, page)});
 }
