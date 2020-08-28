@@ -17,4 +17,6 @@ class QWebEnginePageWrap : public Napi::ObjectWrap<QWebEnginePageWrap> {
   QWebEnginePage* getInternalInstance();
   // Wrapped methods
   Napi::Value runJavaScript(const Napi::CallbackInfo& info);
+  Napi::Value setWebChannel(const Napi::CallbackInfo& info);
+  Napi::Value webChannel(const Napi::CallbackInfo& info);
 };
