@@ -1,4 +1,4 @@
-import { QWebEngineView } from "./index";
+import { QWebEngineView, QWebChannel } from "./index";
 // import {
 //   QMainWindow,
 //   QWidget,
@@ -11,12 +11,20 @@ import { QWebEngineView } from "./index";
 const webview = new QWebEngineView();
 webview.setInlineStyle("align-self:'stretch';");
 webview.load("http://google.com");
-webview.addEventListener("urlChanged", url => {
+webview.addEventListener("urlChanged", (url) => {
   console.log("changed to", url);
 });
 webview.addEventListener("selectionChanged", () => {
   console.log("selection", webview.property("selectedText").toString());
 });
+webview.addEventListener("loadFinished", () => {
+  const js = `alert('nodeui');`;
+  const page = webview.page();
+  page.runJavaScript(js);
+});
+
+const channel = new QWebChannel();
+webview.page().setWebChannel(channel);
 
 webview.show();
 (global as any).wv = webview;

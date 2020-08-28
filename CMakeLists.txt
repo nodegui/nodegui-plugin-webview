@@ -21,6 +21,9 @@ add_library(${PLUGIN_ADDON_NAME} SHARED
     "${PROJECT_SOURCE_DIR}/src/cpp/QWebEngineView/qwebengineview_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/QWebEngineView/nwebengineview.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/QWebEngineSettings/qwebenginesettings_wrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/QWebEnginePage/qwebenginepage_wrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/QWebChannel/qwebchannel_wrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/QWebChannel/nwebchannel.hpp"
 ) 
 
 AddQtWebSupport(${PLUGIN_ADDON_NAME})
