@@ -8,7 +8,7 @@
     "build": "cross-env tsc && npm run build:addon",
     "build:addon": "cross-env CMAKE_BUILD_PARALLEL_LEVEL=8 cmake-js compile",
     "dev": "cross-env npm run build && qode dist/demo.js",
-    "postinstall": "node ./scripts/install.js"
+    "postinstall": "node ./scripts/install.js && npm run build:addon"
   },
   "author": "Atul R",
   "license": "MIT",
