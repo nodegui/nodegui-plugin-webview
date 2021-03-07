@@ -1,13 +1,14 @@
 import path from 'path';
-import { WidgetAttribute, WidgetEventTypes, QColor } from "@nodegui/nodegui";
-import { QWebEngineView, QWebChannel } from "./index";
-
-const webview = new QWebEngineView();
+import { WidgetAttribute, WidgetEventTypes, QPainter, QColor, PenStyle, WindowType } from "@nodegui/nodegui";
+import { QWebEngineView, QWebChannel } from "nodegui-plugin-webview";
 
 const index = 'file://' + path.resolve(__dirname, '..', 'public/index.html');
 
+const webview = new QWebEngineView();
+
 webview.setAttribute(WidgetAttribute.WA_TranslucentBackground, true);
 webview.setAttribute(WidgetAttribute.WA_OpaquePaintEvent, true);
+webview.setAttribute(WidgetAttribute.WA_AlwaysStackOnTop, true);
 
 webview.load(index);
 
@@ -25,14 +26,15 @@ webview.addEventListener("loadFinished", () => {
   page.runJavaScript(js);  
 });
 
+const color = new QColor('transparent');
+
 webview.addEventListener(WidgetEventTypes.Paint, () => {
-  webview.setStyleSheet('background:transparent');
-  webview.setInlineStyle("align-self:'stretch';");
+  webview.page().setBackgroundColor(color);
 });
 
 const channel = new QWebChannel();
 webview.page().setWebChannel(channel);
-webview.page().setBackgroundColor(new QColor(255,0,0,0));
+webview.page().setBackgroundColor(color);
 
 webview.show();
 (global as any).wv = webview;
