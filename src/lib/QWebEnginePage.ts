@@ -2,6 +2,7 @@ import {
   Component,
   NativeElement,
   checkIfNativeElement,
+  QColor
 } from "@nodegui/nodegui";
 import { QWebChannel } from "./QWebChannel";
 
@@ -26,5 +27,9 @@ export class QWebEnginePage extends Component {
 
   webChannel(): QWebChannel {
     return new QWebChannel(this.native.webChannel());
+  }
+
+  setBackgroundColor(color: QColor): void {
+    this.native.setBackgroundColor(color.native);
   }
 }
