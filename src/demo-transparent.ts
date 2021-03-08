@@ -26,7 +26,7 @@ webview.addEventListener("loadFinished", () => {
   page.runJavaScript(js);
 });
 
-const color = new QColor('transparent');
+const color = new QColor("transparent");
 
 webview.addEventListener(WidgetEventTypes.Paint, () => {
   webview.page().setBackgroundColor(color);
