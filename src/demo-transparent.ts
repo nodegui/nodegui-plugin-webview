@@ -1,8 +1,15 @@
-import path from 'path';
-import { WidgetAttribute, WidgetEventTypes, QPainter, QColor, PenStyle, WindowType } from "@nodegui/nodegui";
-import { QWebEngineView, QWebChannel } from "nodegui-plugin-webview";
+import path from "path";
+import {
+  WidgetAttribute,
+  WidgetEventTypes,
+  QPainter,
+  QColor,
+  PenStyle,
+  WindowType,
+} from "@nodegui/nodegui";
+import { QWebEngineView, QWebChannel } from ".";
 
-const index = 'file://' + path.resolve(__dirname, '..', 'public/index.html');
+const index = "file://" + path.resolve(__dirname, "..", "public/index.html");
 
 const webview = new QWebEngineView();
 
@@ -23,10 +30,10 @@ webview.addEventListener("selectionChanged", () => {
 webview.addEventListener("loadFinished", () => {
   const js = `alert('nodeui');`;
   const page = webview.page();
-  page.runJavaScript(js);  
+  page.runJavaScript(js);
 });
 
-const color = new QColor('transparent');
+const color = new QColor("transparent");
 
 webview.addEventListener(WidgetEventTypes.Paint, () => {
   webview.page().setBackgroundColor(color);
