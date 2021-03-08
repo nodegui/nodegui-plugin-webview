@@ -20,4 +20,5 @@ class QWebEnginePageWrap : public Napi::ObjectWrap<QWebEnginePageWrap> {
   Napi::Value setWebChannel(const Napi::CallbackInfo& info);
   Napi::Value webChannel(const Napi::CallbackInfo& info);
   Napi::Value setBackgroundColor(const Napi::CallbackInfo& info);
+  Napi::Value backgroundColor(const Napi::CallbackInfo& info);
 };
