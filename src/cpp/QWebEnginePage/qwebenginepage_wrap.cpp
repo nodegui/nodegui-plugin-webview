@@ -2,6 +2,8 @@
 
 #include "Extras/Utils/nutils.h"
 #include "src/cpp/QWebChannel/qwebchannel_wrap.h"
+#include <nodegui/QtGui/QColor/qcolor_wrap.h>
+
 
 Napi::FunctionReference QWebEnginePageWrap::constructor;
 
@@ -13,6 +15,7 @@ Napi::Object QWebEnginePageWrap::init(Napi::Env env, Napi::Object exports) {
       {InstanceMethod("setWebChannel", &QWebEnginePageWrap::setWebChannel),
         InstanceMethod("webChannel", &QWebEnginePageWrap::webChannel),
        InstanceMethod("runJavaScript", &QWebEnginePageWrap::runJavaScript),
+       InstanceMethod("setBackgroundColor", &QWebEnginePageWrap::setBackgroundColor),
        COMPONENT_WRAPPED_METHODS_EXPORT_DEFINE(QWebEnginePageWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
@@ -66,4 +69,13 @@ Napi::Value QWebEnginePageWrap::webChannel(const Napi::CallbackInfo& info) {
   QWebChannel* webChannel = this->instance->webChannel();
   return QWebChannelWrap::constructor.New(
       {Napi::External<QWebChannel>::New(env, webChannel)});
+}
+
+Napi::Value QWebEnginePageWrap::setBackgroundColor(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+  Napi::Object colorObject = info[0].As<Napi::Object>();
+  QColorWrap* colorWrap = Napi::ObjectWrap<QColorWrap>::Unwrap(colorObject);
+  this->instance->setBackgroundColor(*colorWrap->getInternalInstance());
+  return env.Null();
 }
