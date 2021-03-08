@@ -1,6 +1,6 @@
 import path from 'path';
 import { WidgetAttribute, WidgetEventTypes, QPainter, QColor, PenStyle, WindowType } from "@nodegui/nodegui";
-import { QWebEngineView, QWebChannel } from "nodegui-plugin-webview";
+import { QWebEngineView, QWebChannel } from ".";
 
 const index = 'file://' + path.resolve(__dirname, '..', 'public/index.html');
 
