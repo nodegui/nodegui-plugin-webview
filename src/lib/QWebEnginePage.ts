@@ -32,4 +32,8 @@ export class QWebEnginePage extends Component {
   setBackgroundColor(color: QColor): void {
     this.native.setBackgroundColor(color.native);
   }
+
+  backgroundColor(): QColor {
+    return this.native.backgroundColor()
+  }
 }

@@ -16,6 +16,7 @@ Napi::Object QWebEnginePageWrap::init(Napi::Env env, Napi::Object exports) {
         InstanceMethod("webChannel", &QWebEnginePageWrap::webChannel),
        InstanceMethod("runJavaScript", &QWebEnginePageWrap::runJavaScript),
        InstanceMethod("setBackgroundColor", &QWebEnginePageWrap::setBackgroundColor),
+       InstanceMethod("backgroundColor", &QWebEnginePageWrap::backgroundColor),
        COMPONENT_WRAPPED_METHODS_EXPORT_DEFINE(QWebEnginePageWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
@@ -78,4 +79,13 @@ Napi::Value QWebEnginePageWrap::setBackgroundColor(const Napi::CallbackInfo& inf
   QColorWrap* colorWrap = Napi::ObjectWrap<QColorWrap>::Unwrap(colorObject);
   this->instance->setBackgroundColor(*colorWrap->getInternalInstance());
   return env.Null();
+}
+
+Napi::Value QWebEnginePageWrap::backgroundColor(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+  QColor color = this->instance->backgroundColor();
+  auto instance = QColorWrap::constructor.New(
+      {Napi::External<QColor>::New(env, new QColor(color))});
+  return instance; 
 }
